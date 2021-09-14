@@ -1,5 +1,5 @@
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import './App.css';
 import Home from './Home'
 import Profile from './Profile'
@@ -26,11 +26,14 @@ function Navi() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
 
-            <Nav.Link ><Link className='text-link' to='/profile'>profile</Link></Nav.Link>
-            <Nav.Link ><Link className='text-link' to='/sensor'>sensor</Link></Nav.Link>
-            <NavDropdown title="temperature and humidity" id="basic-nav-dropdown">
-              <NavDropdown.Item ><Link className='text-link' to='/th1'>living room</Link></NavDropdown.Item>
-              <NavDropdown.Item ><Link className='text-link' to='/th2'>room</Link></NavDropdown.Item>
+            <Nav.Link ><Link className='text-link' to='/profile'>Profile</Link></Nav.Link>
+            <NavDropdown title="Sensor" id="basic-nav-dropdown">
+              <NavDropdown.Item ><Link className='text-link' to='/sensor/display'>Sensor Display</Link></NavDropdown.Item>
+              <NavDropdown.Item ><Link className='text-link' to='/sensor/edit'>Sensor Edit</Link></NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Temperature and Humidity" id="basic-nav-dropdown">
+              <NavDropdown.Item ><Link className='text-link' to='/th1'>Living room</Link></NavDropdown.Item>
+              <NavDropdown.Item ><Link className='text-link' to='/th2'>Room</Link></NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
