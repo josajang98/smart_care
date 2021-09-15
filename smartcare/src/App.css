@@ -12,6 +12,7 @@ body {
   background-color: #e2e8f0;
 }
 
-#root {
+#root,
+.App {
   height: 100%;
 }
