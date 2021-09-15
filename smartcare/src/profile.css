@@ -2,16 +2,11 @@
   width: auto;
   height: 100%;
   font-size: large;
-  box-shadow: 10px;
-  padding: 20px;
+  border-style: none;
+  padding: 0px 20px;
+  margin-bottom: 10px;
 }
-input {
-  border-width: 0.5px;
-  border-radius: 0.5em;
-  width: 200px;
 
-  outline: none;
-}
 article {
   height: 100%;
 }
@@ -21,29 +16,34 @@ article {
 img {
   width: 100%;
 }
-ul {
+.profile .card .info ul {
   width: 100%;
   padding: 0;
   list-style: none;
 }
-li {
-  border-style: solid;
-  border-width: 0px;
+.profile .card .info ul li {
   padding: 10px;
   margin: 10px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-h4 {
-  margin-bottom: 0;
+.profile .card .info ul li input {
+  border-width: 0.5px;
+  border-radius: 0.5em;
+  width: 180px;
+  height: 40px;
+  outline: none;
+  padding: 2px 5px;
+}
+.profile .card .info .btn {
+  float: right;
 }
 .title {
-  background-color: #f8f9fa;
+  background-color: white;
   text-align: center;
-  border-style: solid;
-  border-width: 0.1px 0px;
-  border-color: gray;
+  margin-top: 10px;
   height: 60px;
   display: flex;
   justify-content: center;
@@ -52,6 +52,7 @@ h4 {
 .title h4 {
   margin-bottom: 0;
 }
+
 @media screen and (min-width: 769px) {
   .profile {
     width: 100%;
@@ -70,8 +71,6 @@ h4 {
     height: 500px;
   }
   .info {
-    border-color: blue;
-    border-width: 5px;
     width: 600px;
     display: flex;
     align-items: center;

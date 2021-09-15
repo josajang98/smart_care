@@ -62,14 +62,13 @@ function Obj({ name, h, m, setTimes, times }) {
 
   }
   return (
-    <div>
-      <article className='obj'>
-
-        <div className='info'>
-          <h6>{name}</h6>
-        </div>
+    <article className='obj'>
+      <div className='info'>
+        <h6>{name}</h6>
+      </div>
+      <div className='time-btn'>
         <div className='time'>
-          <h6>{h}:{m}</h6>
+          <h4>{h}:{m}</h4>
         </div>
         <div className='btn-group'>
           <div className='btns'>
@@ -81,13 +80,9 @@ function Obj({ name, h, m, setTimes, times }) {
             <Button onClick={() => { setHourMin(name, 'mm', setTimes) }} variant="outline-success">-</Button>
           </div>
         </div>
+      </div>
 
-
-
-      </article>
-      <hr />
-    </div>
-
+    </article>
   )
 }
 export default Alarm;

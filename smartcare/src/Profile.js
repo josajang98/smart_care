@@ -36,8 +36,8 @@ function Display({ update, setUpdate }) {
           <li><h5>Blood Type:</h5>AB</li><hr />
           <li><h5>Adrress:</h5>충남어쩌구저쩌구</li><hr />
           <li><h5>Disease:</h5>치매</li><hr />
-          <Button onClick={() => { setUpdate(!update) }} variant="outline-success">Edit</Button>{' '}
         </ul>
+        <Button className='btn' onClick={() => { setUpdate(!update) }} variant="outline-success">Edit</Button>{' '}
       </article>
     </section>
   )
@@ -57,9 +57,8 @@ function EditPage({ update, setUpdate }) {
           <li><h5>Blood Type:</h5><input></input></li><hr />
           <li><h5>Adrress:</h5><input></input></li><hr />
           <li><h5>Disease:</h5><input></input></li><hr />
-          <Button onClick={() => { setUpdate(!update) }} variant="outline-primary">Update</Button>{' '}
-
         </ul>
+        <Button className='btn' onClick={() => { setUpdate(!update) }} variant="outline-primary">Update</Button>{' '}
       </article>
     </section>
   )

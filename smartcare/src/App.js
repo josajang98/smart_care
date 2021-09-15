@@ -10,36 +10,23 @@ import TH from './TH'
 function App() {
   return (
     <div className="App">
-      <Navi></Navi>
-      <Route exact path='/'><Home /></Route>
-      <Route path='/profile'><Profile /></Route>
-      <Route path='/sensor'><Sensor /></Route>
-      <Route path='/alarm'><Alarm /></Route>
-      <Route path='/th'><TH /></Route>
+      <header className='header'><h2>Smart care</h2></header>
+      <main>
+        <article className='widget'>
+          <Profile />
+        </article>
+        <article className='widget'>
+          <Sensor />
+        </article>
+        <article className='widget'>
+          <Alarm />
+        </article>
+        <article className='widget'>
+          <TH />
+        </article>
+      </main>
     </div>
   );
 }
-function Navi() {
-  return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand ><Link className='text-link' to='/'>Smart Care</Link></Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link ><Link className='text-link' to='/profile'>Profile</Link></Nav.Link>
-            <NavDropdown title="Sensor" id="basic-nav-dropdown">
-              <NavDropdown.Item ><Link className='text-link' to='/sensor'>Sensor log</Link></NavDropdown.Item>
-              <NavDropdown.Item ><Link className='text-link' to='/alarm'>Alarm setting</Link></NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown title="Temperature and Humidity" id="basic-nav-dropdown">
-              <NavDropdown.Item ><Link className='text-link' to='/th1'>Living room</Link></NavDropdown.Item>
-              <NavDropdown.Item ><Link className='text-link' to='/th2'>Room</Link></NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  )
-}
+
 export default App;
