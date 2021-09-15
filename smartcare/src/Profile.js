@@ -7,6 +7,9 @@ function Profile() {
 
   return (
     <div className='profile'>
+      <section className='title'>
+        <h4>Profile</h4>
+      </section>
       {
         update
           ? <Display update={update} setUpdate={setUpdate} />

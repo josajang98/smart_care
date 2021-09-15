@@ -1,0 +1,26 @@
+.alarm {
+  height: 100%;
+  background-color: #f8f9fa;
+}
+.obj {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  height: 100px;
+}
+.obj .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.obj .btn-group .btns {
+  margin-left: 10px;
+}
+.save-btn {
+  margin: 20px;
+  float: right;
+}
+hr {
+  margin: 0;
+}
