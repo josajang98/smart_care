@@ -22,7 +22,10 @@ function App() {
           <Alarm />
         </article>
         <article className='widget'>
-          <TH />
+          <TH title='Living room' />
+        </article>
+        <article className='widget'>
+          <TH title='Room' />
         </article>
       </main>
     </div>

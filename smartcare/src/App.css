@@ -2,12 +2,14 @@
 html,
 .App {
   height: auto;
+  width: 100%;
 }
 body {
   height: 100%;
   color: #1a202c;
   text-align: left;
   background-color: #eff0f5;
+  width: 100%;
 }
 .header {
   background-color: white;
