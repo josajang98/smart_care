@@ -9,75 +9,76 @@ import {
   Legend
 } from "recharts";
 
+
 const data = [
   {
-    name: "10:55",
-    h1: 50.0,
-    t1: 25
+    time: "10:55",
+    humidity: 50.0,
+    temperature: 25
   },
   {
-    name: "10:56",
-    h1: 55.0,
-    t1: 26.2
+    time: "10:56",
+    humidity: 55.0,
+    temperature: 26.2
   },
   {
-    name: "10:57",
-    h1: 58.0,
-    t1: 27.2
+    time: "10:57",
+    humidity: 58.0,
+    temperature: 27.2
   },
   {
-    name: "10:58",
-    h1: 68.0,
-    t1: 23.2
+    time: "10:58",
+    humidity: 68.0,
+    temperature: 23.2
   },
   {
-    name: "10:59",
-    h1: 56.0,
-    t1: 22.2
+    time: "10:59",
+    humidity: 68.0,
+    temperature: 23.2
   },
   {
-    name: "11:00",
-    h1: 77.0,
-    t1: 21.2
+    time: "11:00",
+    humidity: 77.0,
+    temperature: 21.2
   },
   {
-    name: "11:01",
-    h1: 60,
-    t1: 26.2
+    time: "11:01",
+    humidity: 60,
+    temperature: 26.2
   }, {
-    name: "10:55",
-    h1: 50.0,
-    t1: 25
+    time: "10:55",
+    humidity: 50.0,
+    temperature: 25
   },
   {
-    name: "10:56",
-    h1: 55.0,
-    t1: 26.2
+    time: "10:56",
+    humidity: 55.0,
+    temperature: 26.2
   },
   {
-    name: "10:57",
-    h1: 58.0,
-    t1: 27.2
+    time: "10:57",
+    humidity: 58.0,
+    temperature: 27.2
   },
   {
-    name: "10:58",
-    h1: 68.0,
-    t1: 23.2
+    time: "10:58",
+    humidity: 68.0,
+    temperature: 23.2
   },
   {
-    name: "10:59",
-    h1: 56.0,
-    t1: 22.2
+    time: "10:59",
+    humidity: 56.0,
+    temperature: 22.2
   },
   {
-    name: "11:00",
-    h1: 77.0,
-    t1: 21.2
+    time: "11:00",
+    humidity: 77.0,
+    temperature: 21.2
   },
   {
-    name: "11:01",
-    h1: 60,
-    t1: 26.2
+    time: "11:01",
+    humidity: 60,
+    temperature: 26.2
   },
 ];
 
@@ -99,7 +100,7 @@ export default function TH({ title, data1 }) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="time" />
           <YAxis yAxisId="left" type="number" domain={[40, 80]} />
           <YAxis yAxisId="right" orientation="right" type="number" domain={[20, 35]} />
           <Tooltip />
@@ -107,11 +108,11 @@ export default function TH({ title, data1 }) {
           <Line
             yAxisId="left"
             type="monotone"
-            dataKey="h1"
+            dataKey="humidity"
             stroke="#8884d8"
             activeDot={{ r: 2 }}
           />
-          <Line yAxisId="right" type="monotone" dataKey="t1" stroke="#82ca9d" />
+          <Line yAxisId="right" type="monotone" dataKey="temperature" stroke="#82ca9d" />
         </LineChart>
       </section>
 

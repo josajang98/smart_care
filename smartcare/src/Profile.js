@@ -2,6 +2,7 @@ import './profile.css';
 import pro_img from './images/profile.jpg'
 import { useState } from 'react';
 import { Button } from 'react-bootstrap'
+import axios from 'axios'
 function Profile() {
   const [update, setUpdate] = useState(true);
 
