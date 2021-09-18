@@ -1,11 +1,17 @@
 import './profile.css';
 import pro_img from './images/profile.jpg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap'
-import axios from 'axios'
+import axios from 'axios';
 function Profile() {
   const [update, setUpdate] = useState(true);
-
+  const [profileData, setData] = useState('');
+  axios.get('http://localhost:8080/profile').then((res) => {
+    console.log(1)
+    setData(res.data[0]);
+  }).catch((Error) => {
+    console.log(Error);
+  })
   return (
     <div className='profile'>
       <section className='title'>
@@ -13,7 +19,7 @@ function Profile() {
       </section>
       {
         update
-          ? <Display update={update} setUpdate={setUpdate} />
+          ? <Display update={update} setUpdate={setUpdate} data={profileData} />
           : <EditPage Pageupdate={update} setUpdate={setUpdate} />
       }
 
@@ -22,7 +28,7 @@ function Profile() {
   )
 }
 
-function Display({ update, setUpdate }) {
+function Display({ update, setUpdate, data }) {
   return (
     <section className='card'>
       <article className='profile-img'>
@@ -31,7 +37,7 @@ function Display({ update, setUpdate }) {
       <article className='info'>
         <ul>
           <hr />
-          <li><h5>Name:</h5>조항주</li><hr />
+          <li><h5>Name:</h5>{data.name}</li><hr />
           <li><h5>Age:</h5>24</li><hr />
           <li><h5>Mobile:</h5>010-5021-0173</li><hr />
           <li><h5>Blood Type:</h5>AB</li><hr />

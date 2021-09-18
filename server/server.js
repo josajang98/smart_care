@@ -32,10 +32,10 @@ app.put('/profile', (req, res) => {
 
 app.post('/test', (req, res) => {
   db.collection('th').insertOne({
-    "_id": 1,
-    "time": "10:56",
-    "humidity": 55.0,
-    "temperature": 26.2
+    "_id": 10,
+    "time": "11:05",
+    "humidity": 68.0,
+    "temperature": 23.2
   }, (err, result) => {
     res.send('ㅇ');
   })
