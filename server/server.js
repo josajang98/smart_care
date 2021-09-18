@@ -23,11 +23,9 @@ app.get('/:id', (req, res) => {
 })
 
 app.put('/profile', (req, res) => {
-
   db.collection('profile').updateOne({ _id: 0 }, { $set: req.body }, (err, result) => {
     res.json(req.body)
   })
-
 })
 
 app.post('/test', (req, res) => {

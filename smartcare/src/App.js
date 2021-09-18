@@ -1,7 +1,4 @@
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import { Link, Route } from 'react-router-dom';
 import './App.css';
-import Home from './Home'
 import Profile from './Profile'
 import Sensor from './Sensor'
 import Alarm from './Alarm';
