@@ -1,54 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './sensor.css';
+import axios from 'axios'
 
 function Sensor() {
-  const [sensorData, setSensorData] = useState([
-    {
-      "현관문 움직임 감지": 1,
-      "방문 움직임 감지": 0,
-      "화장문 움직임 감지": 1,
-      "거실 인체 감지": 1,
-      "방 인체 감지": 0,
-      "화장실 인체 감지": 1,
-      "hour": 20,
-      "min": 28,
-      "sec": 51
-    },
-    {
-      "현관문 움직임 감지": 0,
-      "방문 움직임 감지": 1,
-      "화장문 움직임 감지": 1,
-      "거실 인체 감지": 1,
-      "방 인체 감지": 1,
-      "화장실 인체 감지": 0,
-      "hour": 20,
-      "min": 28,
-      "sec": 52
-    },
-    {
-      "현관문 움직임 감지": 1,
-      "방문 움직임 감지": 0,
-      "화장문 움직임 감지": 1,
-      "거실 인체 감지": 0,
-      "방 인체 감지": 1,
-      "화장실 인체 감지": 1,
-      "hour": 20,
-      "min": 28,
-      "sec": 53
-    },
-    {
-      "현관문 움직임 감지": 1,
-      "방문 움직임 감지": 0,
-      "화장문 움직임 감지": 0,
-      "거실 인체 감지": 1,
-      "방 인체 감지": 1,
-      "화장실 인체 감지": 1,
-      "hour": 20,
-      "min": 28,
-      "sec": 54
-    },
+  const [sensorData, setSensorData] = useState([])
 
-  ])
+  useEffect(() => {
+    axios.get('/data').then((res) => {
+      console.log(res.data)
+      setSensorData(res.data);
+    }).catch((Error) => {
+      console.log(Error);
+    })
+  }, [])
+
   return (
     <div className='sensor'>
       <section className='title'>
@@ -73,6 +38,7 @@ function Message({ data }) {
   const m = data.min;
   const s = data.sec;
   for (const key in data) {
+    if (key === '_id') continue
     if (data[key] === 0) {
       result.push(
         <div className='message' >
