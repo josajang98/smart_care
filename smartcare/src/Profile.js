@@ -7,7 +7,7 @@ import axios from 'axios';
 function Profile() {
   const [update, setUpdate] = useState(true);
   const [profileData, setData] = useState('');
-  const [inputData, setInputData] = useState('');
+
 
   useEffect(() => {
     axios.get('/profile').then((res) => {
@@ -25,7 +25,7 @@ function Profile() {
       {
         update
           ? <Display update={update} setUpdate={setUpdate} data={profileData} />
-          : <EditPage Pageupdate={update} setUpdate={setUpdate} />
+          : <EditPage Pageupdate={update} setUpdate={setUpdate} profileData={profileData} />
       }
 
     </div>
@@ -54,15 +54,8 @@ function Display({ update, setUpdate, data }) {
     </section>
   )
 }
-function EditPage({ update, setUpdate }) {
-  const [data, setData] = useState({
-    name: '',
-    age: '',
-    mobile: '',
-    blood: '',
-    address: '',
-    disease: ''
-  });
+function EditPage({ update, setUpdate, profileData }) {
+  const [data, setData] = useState(profileData);
 
   const submitHandler = (e) => {
 
@@ -80,12 +73,12 @@ function EditPage({ update, setUpdate }) {
         <form onSubmit={submitHandler}>
           <ul>
             <hr />
-            <li><h5>Name:</h5><input onChange={(e) => { const copy = { ...data }; copy.name = e.target.value; setData(copy) }} /></li><hr />
-            <li><h5>Age:</h5><input onChange={(e) => { const copy = { ...data }; copy.age = e.target.value; setData(copy) }} /></li><hr />
-            <li><h5>Mobile:</h5><input onChange={(e) => { const copy = { ...data }; copy.mobile = e.target.value; setData(copy) }} /></li><hr />
-            <li><h5>Blood Type:</h5><input onChange={(e) => { const copy = { ...data }; copy.blood = e.target.value; setData(copy) }} /></li><hr />
-            <li><h5>Adrress:</h5><input onChange={(e) => { const copy = { ...data }; copy.address = e.target.value; setData(copy) }} /></li><hr />
-            <li><h5>Disease:</h5><input onChange={(e) => { const copy = { ...data }; copy.disease = e.target.value; setData(copy) }} /></li><hr />
+            <li><h5>Name:</h5><input value={data.name} onChange={(e) => { const copy = { ...data }; copy.name = e.target.value; setData(copy) }} /></li><hr />
+            <li><h5>Age:</h5><input value={data.age} onChange={(e) => { const copy = { ...data }; copy.age = e.target.value; setData(copy) }} /></li><hr />
+            <li><h5>Mobile:</h5><input value={data.mobile} onChange={(e) => { const copy = { ...data }; copy.mobile = e.target.value; setData(copy) }} /></li><hr />
+            <li><h5>Blood Type:</h5><input value={data.blood} onChange={(e) => { const copy = { ...data }; copy.blood = e.target.value; setData(copy) }} /></li><hr />
+            <li><h5>Adrress:</h5><input value={data.address} onChange={(e) => { const copy = { ...data }; copy.address = e.target.value; setData(copy) }} /></li><hr />
+            <li><h5>Disease:</h5><input value={data.disease} onChange={(e) => { const copy = { ...data }; copy.disease = e.target.value; setData(copy) }} /></li><hr />
           </ul>
           <Button className='btn' type='submit' variant="outline-primary">Update</Button>
         </form>
