@@ -8,81 +8,20 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-
-
-const data = [
-  {
-    time: "10:55",
-    humidity: 50.0,
-    temperature: 25
-  },
-  {
-    time: "10:56",
-    humidity: 55.0,
-    temperature: 26.2
-  },
-  {
-    time: "10:57",
-    humidity: 58.0,
-    temperature: 27.2
-  },
-  {
-    time: "10:58",
-    humidity: 68.0,
-    temperature: 23.2
-  },
-  {
-    time: "10:59",
-    humidity: 68.0,
-    temperature: 23.2
-  },
-  {
-    time: "11:00",
-    humidity: 77.0,
-    temperature: 21.2
-  },
-  {
-    time: "11:01",
-    humidity: 60,
-    temperature: 26.2
-  }, {
-    time: "10:55",
-    humidity: 50.0,
-    temperature: 25
-  },
-  {
-    time: "10:56",
-    humidity: 55.0,
-    temperature: 26.2
-  },
-  {
-    time: "10:57",
-    humidity: 58.0,
-    temperature: 27.2
-  },
-  {
-    time: "10:58",
-    humidity: 68.0,
-    temperature: 23.2
-  },
-  {
-    time: "10:59",
-    humidity: 56.0,
-    temperature: 22.2
-  },
-  {
-    time: "11:00",
-    humidity: 77.0,
-    temperature: 21.2
-  },
-  {
-    time: "11:01",
-    humidity: 60,
-    temperature: 26.2
-  },
-];
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 export default function TH({ title, data1 }) {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get('/th').then((res) => {
+      console.log(res.data)
+      setData(res.data);
+    }).catch((Error) => {
+      console.log(Error);
+    })
+  }, [])
+
   return (
     <div className='TH'>
       <section className='title'>
