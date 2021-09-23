@@ -22,8 +22,8 @@ app.get('/:id', (req, res) => {
   });
 })
 
-app.put('/profile', (req, res) => {
-  db.collection('profile').updateOne({ _id: 0 }, { $set: req.body }, (err, result) => {
+app.put('/:id', (req, res) => {
+  db.collection(req.params.id).updateOne({ _id: 0 }, { $set: req.body }, (err, result) => {
     res.json(req.body)
   })
 })

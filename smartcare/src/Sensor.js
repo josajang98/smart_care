@@ -56,9 +56,9 @@ function Sensor() {
       </section>
       <section className='logs'>
         {
-          sensorData.map(data => {
+          sensorData.map((data, idx) => {
             return (
-              <Message data={data} />
+              <Message key={idx} data={data} />
             )
           })
         }

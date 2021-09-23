@@ -1,21 +1,32 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
+import axios from 'axios'
 import './Alarm.css'
 function Alarm() {
-  const [times, setTimes] = useState({
-    "거실 적외선 센서": 240,
-    "방 적외선 센서": 200,
-    "화장실 적외선 센서": 120,
-    "거실 인체감지 센서": 100,
-    "방 인체감지 센서": 60,
-    "화장실 인체감지 센서": 70,
-  })
+  const [times, setTimes] = useState('')
+  const btnHandler = (e) => {
+    e.preventDefault();
+
+    axios.put('/alarm', times)
+      .then((res) => { console.log(res) });
+  };
+
+  useEffect(() => {
+    axios.get('/alarm').then((res) => {
+      delete res.data[0]._id;
+      setTimes(res.data[0]);
+    }).catch((Error) => {
+      console.log(Error);
+    })
+  }, [])
+
+
 
   function display(times) {
     const result = [];
     for (const key in times) {
       result.push(
-        <Obj name={key} times={times} h={Math.floor(times[key] / 60).toString().padStart(2, '0')} m={(times[key] % 60).toString().padStart(2, '0')} setTimes={setTimes} />
+        <Obj key={key} name={key} times={times} h={Math.floor(times[key] / 60).toString().padStart(2, '0')} m={(times[key] % 60).toString().padStart(2, '0')} setTimes={setTimes} />
       )
     }
     return result;
@@ -30,7 +41,7 @@ function Alarm() {
       <section className='sensor-value-settings'>
         {display(times)}
       </section>
-      <Button className='save-btn' variant="primary">Primary</Button>{' '}
+      <Button className='save-btn' variant="primary" onClick={btnHandler}>Update</Button>
     </div>
 
   )
@@ -58,6 +69,7 @@ function Obj({ name, h, m, setTimes, times }) {
         else copy[name] -= 10;
         setTimes(copy);
         break;
+
     }
 
   }
