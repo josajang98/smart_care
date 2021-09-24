@@ -14,8 +14,7 @@ import { useEffect, useState } from 'react';
 export default function TH({ title, data1 }) {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('/th').then((res) => {
-      console.log(res.data)
+    axios.get('/th1').then((res) => {
       setData(res.data);
     }).catch((Error) => {
       console.log(Error);
@@ -28,8 +27,9 @@ export default function TH({ title, data1 }) {
         <h4>{title}</h4>
       </section>
       <section className="chart">
+
         <LineChart
-          width={window.outerWidth - 40}
+          width={window.outerWidth > 769 ? 500 : window.outerWidth - 40}
           height={300}
           data={data}
           margin={{

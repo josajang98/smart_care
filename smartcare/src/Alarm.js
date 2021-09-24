@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import axios from 'axios'
 import './Alarm.css'
-function Alarm() {
-  const [times, setTimes] = useState('')
+function Alarm({ times, setTimes }) {
+
   const btnHandler = (e) => {
     e.preventDefault();
 

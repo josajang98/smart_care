@@ -33,4 +33,12 @@ main {
 }
 
 @media screen and (min-width: 769px) {
+  main {
+    padding: 10px 150px;
+    display: flex;
+    align-items: flex-start;
+  }
+  .widget {
+    height: auto;
+  }
 }

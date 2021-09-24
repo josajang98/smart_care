@@ -28,16 +28,10 @@ app.put('/:id', (req, res) => {
   })
 })
 
-app.post('/test', (req, res) => {
-  db.collection('th').insertOne({
-    "_id": 10,
-    "time": "11:05",
-    "humidity": 68.0,
-    "temperature": 23.2
-  }, (err, result) => {
-    res.send('ㅇ');
-  })
-})
+const token = '2043330414:AAFWFT1PQ6P0kAmh5331WuuiDRHzXEslsgg';
+const id = '1992525601';
+const message = '안녕'
+app.get(`https://api.telegram.org/bot${token}/sendmessage?chat_id=${id}&text=${message}`)
 
 
 

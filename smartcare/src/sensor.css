@@ -13,7 +13,7 @@
   box-shadow: 1px 1px 5px 0px rgb(0 0 0 / 10%);
   padding: 5px;
   margin: 15px;
-  height: 55px;
+  height: 60px;
 }
 
 h5,
@@ -21,9 +21,11 @@ h6 {
   margin-bottom: 2px;
 }
 @media screen and (min-width: 769px) {
-  .logs {
-    height: 100%;
-    padding: 10px;
+  .sensor {
+    height: 873px;
+  }
+  .sensor .logs {
+    height: 715px;
     overflow: auto;
   }
 }
