@@ -51,6 +51,7 @@ serialPort.on('data', function (data) {
         temperature: values.slice(24, 28).join(''),
         time: `${hours}:${minutes}`
       }
+      let upload = false;
       for (let i = 0; i < 8; i++) {
         if (parseInt(values[i]) === 0 && display[i] === true) {
           mkFalse(display, i);
@@ -58,12 +59,18 @@ serialPort.on('data', function (data) {
             mkTrue(display, i)
           }, delay)
           d[arr[i]] = 0;
+          upload = true;
         }
       }
-      db.collection('data').insertOne(d, (err, result) => {
-        values = [];
-        count = 0;
-      })
+      if (upload) {
+
+        db.collection('data').insertOne(d, (err, result) => {
+          values = [];
+          count = 0;
+        })
+      }
+
+
       if (seconds === 0) {
         db.collection('th1').insertOne(th1, (err, result) => { })
         db.collection('th2').insertOne(th2, (err, result) => { })
