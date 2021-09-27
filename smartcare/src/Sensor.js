@@ -5,35 +5,35 @@ import axios from 'axios'
 function Sensor({ times, setTimes }) {
   const [sensorData, setSensorData] = useState([])
 
-
   const map = new Map();
-  map.set()
-  useEffect(() => {
-    axios.get('/data').then((res) => {
-      const lastData = res.data[res.data.length - 1];
-      const date = new Date();
-      for (const key in lastData) {
-        if (key === '_id' || key === 'hour' || key === 'min' || key === 'sec') continue;
-        const t = date.getTime()
-        map.set(key, t);
-        console.log(map)
-        setTimeout(() => {
-          console.log(key)
-          if (map.get(key) === t) {
-            const token = '2043330414:AAFWFT1PQ6P0kAmh5331WuuiDRHzXEslsgg';
-            const id = '1992525601';
-            const message = key;
-            const reqAPI = `https://api.telegram.org/bot${token}/sendmessage?chat_id=${id}&text=${message}`
-            //axios.get(reqAPI)
-          }
-        }, 10000);
-      }
-      setSensorData(res.data);
-    }).catch((Error) => {
-      console.log(Error);
-    })
-  }, [sensorData])
 
+  axios.get('/data').then((res) => {
+    console.log(res.data)
+    const lastData = res.data[res.data.length - 1];
+
+
+    for (const key in lastData) {
+      if (key === '_id' || key === 'hour' || key === 'min' || key === 'sec') continue;
+      if (map.get(key) !== undefined) {
+        clearTimeout(map.get(key));
+      }
+
+      const timeoutID = setTimeout(() => {
+        const token = '2043330414:AAFWFT1PQ6P0kAmh5331WuuiDRHzXEslsgg';
+        const id = '1992525601';
+        const message = key;
+        const reqAPI = `https://api.telegram.org/bot${token}/sendmessage?chat_id=${id}&text=${message}`
+        //axios.get(reqAPI)
+      }, 10000);
+      map.set(key, timeoutID);
+    }
+
+
+    if (JSON.stringify(sensorData) !== JSON.stringify(res.data))
+      setSensorData(res.data);
+  }).catch((Error) => {
+    console.log(Error);
+  })
   return (
     <div className='sensor'>
       <section className='title'>

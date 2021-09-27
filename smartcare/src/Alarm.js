@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 import axios from 'axios'
 import './Alarm.css'

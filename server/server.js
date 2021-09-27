@@ -28,6 +28,13 @@ app.put('/:id', (req, res) => {
   })
 })
 
+app.post('/:id', (req, res) => {
+  res.send(req.body)
+  // db.collection(req.params.id).insertOne(req.body, (err, result) => {
+  //   res.send(result)
+  // })
+})
+
 const token = '2043330414:AAFWFT1PQ6P0kAmh5331WuuiDRHzXEslsgg';
 const id = '1992525601';
 const message = '안녕'
