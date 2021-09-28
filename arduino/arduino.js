@@ -69,8 +69,8 @@ serialPort.on('data', function (data) {
       }
 
       if (seconds === 0) {
-        axios.post('http://localhost:8080/th1', th1).then(() => { console.log(th1) })
-        axios.post('http://localhost:8080/th2', th2).then(() => { console.log(th2) })
+        axios.post('http://localhost:8080/th1', th1)
+        axios.post('http://localhost:8080/th2', th2)
       }
       values = [];
       count = 0;

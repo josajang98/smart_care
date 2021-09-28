@@ -51,10 +51,11 @@ void loop() {
   Serial.print(irSensor3Value); 
   Serial.print(flameSensorValue);
   Serial.print(mq135SensorValue);
+  
   Serial.print(pirSensor1Value);
   Serial.print(pirSensor2Value);
   Serial.print(pirSensor3Value);
- 
+  
   float h1 = dht1.readHumidity(); //습도값 저장
   float t1 = dht1.readTemperature(); //온도값 저장
   float h2 = dht2.readHumidity(); 
