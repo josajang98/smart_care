@@ -1,14 +1,18 @@
 import axios from 'axios';
+import io from 'socket.io-client';
 
-const SerialPort = require('serialport')
+import SerialPort from 'serialport'
 const serialPort = new SerialPort('COM8', {
   baudRate: 9600
 });
+
+const socket = io.connect('http://localhost:8080')
 
 let count = 0;
 let values = [];
 const delay = 60000;
 const display = [true, true, true, true, true, true, true, true];
+
 serialPort.on('data', function (data) {
   const datas = data.toString(); //데이터를 문자열로 변환
 
@@ -56,24 +60,26 @@ serialPort.on('data', function (data) {
         }
       }
       if (upload) {
-        axios.post('data', d)
+        axios.post("http://localhost:8080/data", d)
           .then(res => {
             values = [];
             count = 0;
+            socket.emit("data", 'sensor')
           })
       }
 
-
       if (seconds === 0) {
-        axios.post('th1', th1)
-        axios.post('th2', th2)
+        axios.post('http://localhost:8080/th1', th1).then(() => { console.log(th1) })
+        axios.post('http://localhost:8080/th2', th2).then(() => { console.log(th2) })
       }
       values = [];
       count = 0;
-
     }
   }
 });
+
+
+
 
 
 const mkTrue = (arr, idx) => {

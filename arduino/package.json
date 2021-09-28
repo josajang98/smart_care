@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "axios": "^0.21.4",
-    "serialport": "^9.2.3"
+    "serialport": "^9.2.3",
+    "socket.io-client": "^4.2.0"
   },
+  "type":"module",
   "proxy": "http://localhost:8080"
 }
