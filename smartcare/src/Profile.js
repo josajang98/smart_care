@@ -12,10 +12,11 @@ function Profile() {
   useEffect(() => {
     axios.get('/profile').then((res) => {
       setData(res.data[0]);
+
     }).catch((Error) => {
       console.log(Error);
     })
-  }, [profileData])
+  }, [update])
 
   return (
     <div className='profile'>
@@ -62,7 +63,7 @@ function EditPage({ update, setUpdate, profileData }) {
     e.preventDefault();
     setUpdate(!update)
     axios.put('/profile', data)
-      .then((res) => { console.log(res) });
+
   };
   return (
     <section className='card'>

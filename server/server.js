@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -7,7 +8,7 @@ app.use(express.json());
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://smartcare.loca.lt",
     methods: ["GET", "POST"]
   }
 });
@@ -25,6 +26,11 @@ MongoClient.connect('mongodb+srv://na0173:k6744835**.@cluster0.tyn0c.mongodb.net
   });
 })
 
+app.use(express.static(path.join(__dirname, '../smartcare/build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '../smartcare/build/index.html'));
+});
 
 app.get('/:id', (req, res) => {
   db.collection(req.params.id).find().toArray((err, result) => {
@@ -45,11 +51,13 @@ app.post('/:id', (req, res) => {
 })
 
 io.on('connection', socket => {
+
   socket.on("roomjoin", (userid) => {
+
     socket.join(userid);
   });
 
-  socket.on("data", (touserid) => {
-    io.to(touserid).emit("data", true);
+  socket.on("data", () => {
+    socket.broadcast.emit("data", true);
   });
 })

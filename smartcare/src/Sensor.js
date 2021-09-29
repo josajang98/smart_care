@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './sensor.css';
 import axios from 'axios'
 import io from 'socket.io-client';
-const socket = io.connect('http://localhost:8080')
+const socket = io.connect('https://smartcare.loca.lt')
 
 
 function Sensor() {
@@ -24,7 +24,6 @@ function Sensor() {
     socket.on('data', () => {
 
       axios.get('/data').then(async (res) => {
-        console.log(res.data)
         const lastData = res.data[res.data.length - 1];
 
         for (const key in lastData) {
@@ -36,7 +35,6 @@ function Sensor() {
           const transKey = transform[key];
 
           const times = await axios.get('/alarm')
-          console.log(times.data[0][transKey])
           const timeoutID = setTimeout(() => {
             const token = '2043330414:AAFWFT1PQ6P0kAmh5331WuuiDRHzXEslsgg';
             const id = '1992525601';

@@ -15,7 +15,7 @@ function App() {
           <Profile />
         </article>
         <article className='widget'>
-          <Sensor times={times} setTimes={setTimes} />
+          <Sensor />
         </article>
         <article className='widget' >
           <Alarm times={times} setTimes={setTimes} />

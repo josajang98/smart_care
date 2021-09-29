@@ -6,7 +6,7 @@ const serialPort = new SerialPort('COM8', {
   baudRate: 9600
 });
 
-const socket = io.connect('http://localhost:8080')
+const socket = io.connect('https://smartcare.loca.lt')
 
 let count = 0;
 let values = [];

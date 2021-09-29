@@ -8,11 +8,12 @@ function Alarm({ times, setTimes }) {
     e.preventDefault();
 
     axios.put('/alarm', times)
-      .then((res) => { console.log(res) });
+      .then((res) => { setTimes(res.data); });
   };
 
   useEffect(() => {
     axios.get('/alarm').then((res) => {
+
       delete res.data[0]._id;
       setTimes(res.data[0]);
     }).catch((Error) => {
