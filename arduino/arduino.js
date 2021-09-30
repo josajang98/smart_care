@@ -2,7 +2,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 
 import SerialPort from 'serialport'
-const serialPort = new SerialPort('COM8', {
+const serialPort = new SerialPort('/dev/ttyACM0', {
   baudRate: 9600
 });
 
