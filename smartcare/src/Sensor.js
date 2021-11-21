@@ -26,6 +26,7 @@ function Sensor() {
       axios.get('/data').then(async (res) => {
         const lastData = res.data[res.data.length - 1];
 
+
         for (const key in lastData) {
 
           if (key === '_id' || key === 'hour' || key === 'min' || key === 'sec') continue;
@@ -35,11 +36,15 @@ function Sensor() {
           const transKey = transform[key];
 
           const times = await axios.get('/alarm')
+
+          const token = await axios.get('/profile');
+
+          const id = await axios.get(`https://api.telegram.org/bot${token.data[0]['token']}/getUpdates`);
+
           const timeoutID = setTimeout(() => {
-            const token = '2043330414:AAFWFT1PQ6P0kAmh5331WuuiDRHzXEslsgg';
-            const id = '1992525601';
+
             const message = key;
-            const reqAPI = `https://api.telegram.org/bot${token}/sendmessage?chat_id=${id}&text=${message}`
+            const reqAPI = `https://api.telegram.org/bot${token.data[0]['token']}/sendmessage?chat_id=${id['data']['result'][0]['message']['chat']['id']}&text=${message}`
             axios.get(reqAPI)
           }, times.data[0][transKey] * 60000);
           map.set(key, timeoutID);

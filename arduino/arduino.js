@@ -2,7 +2,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 
 import SerialPort from 'serialport'
-const serialPort = new SerialPort('/dev/ttyACM0', {
+const serialPort = new SerialPort('COM8', {
   baudRate: 9600
 });
 
@@ -19,6 +19,7 @@ serialPort.on('data', function (data) {
   for (let i = 0; i < datas.length; i++) {
     if (datas.substr(i, 1) === '.') values.push(datas.substr(i, 1));
     else values.push(parseInt(datas.substr(i, 1)));
+
     if (datas[i] === ' ') count++;
     if (count === 5) {
       const today = new Date();
@@ -27,10 +28,6 @@ serialPort.on('data', function (data) {
       const minutes = today.getMinutes();  // 분
       const seconds = today.getSeconds();  // 초
 
-      //인체감지센서는 다른 센서와 기본 값이 다르기 때문에 맞춰줌
-      for (let i = 5; i < 8; i++) {
-        values[i] = parseInt(values[i]) ? 0 : 1;
-      }
 
       const d = {
         hour: hours,
@@ -59,6 +56,7 @@ serialPort.on('data', function (data) {
           upload = true;
         }
       }
+      //console.log(values)
       if (upload) {
         axios.post("http://localhost:8080/data", d)
           .then(res => {
@@ -72,8 +70,10 @@ serialPort.on('data', function (data) {
         axios.post('http://localhost:8080/th1', th1)
         axios.post('http://localhost:8080/th2', th2)
       }
+
       values = [];
       count = 0;
+
     }
   }
 });

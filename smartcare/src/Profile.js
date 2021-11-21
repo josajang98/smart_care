@@ -10,7 +10,8 @@ function Profile() {
 
 
   useEffect(() => {
-    axios.get('/profile').then((res) => {
+    axios.get('/profile').then(async (res) => {
+
       setData(res.data[0]);
 
     }).catch((Error) => {
@@ -49,6 +50,7 @@ function Display({ update, setUpdate, data }) {
           <li><h5>Blood Type:</h5>{data.blood}</li><hr />
           <li><h5>Adrress:</h5>{data.address}</li><hr />
           <li><h5>Disease:</h5>{data.disease}</li><hr />
+
         </ul>
         <Button className='btn' onClick={() => { setUpdate(!update) }} variant="outline-success">Edit</Button>{' '}
       </article>
@@ -80,6 +82,7 @@ function EditPage({ update, setUpdate, profileData }) {
             <li><h5>Blood Type:</h5><input value={data.blood} onChange={(e) => { const copy = { ...data }; copy.blood = e.target.value; setData(copy) }} /></li><hr />
             <li><h5>Adrress:</h5><input value={data.address} onChange={(e) => { const copy = { ...data }; copy.address = e.target.value; setData(copy) }} /></li><hr />
             <li><h5>Disease:</h5><input value={data.disease} onChange={(e) => { const copy = { ...data }; copy.disease = e.target.value; setData(copy) }} /></li><hr />
+            <li><h5>API key:</h5><input value={data.token} onChange={(e) => { const copy = { ...data }; copy.token = e.target.value; setData(copy) }} /></li><hr />
           </ul>
           <Button className='btn' type='submit' variant="outline-primary">Update</Button>
         </form>
